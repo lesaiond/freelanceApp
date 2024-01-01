@@ -1,9 +1,9 @@
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
-    buttonText: string;
+import { StyledButton } from "./Button.style";
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonText: string;
 }
 
-export const Button = ({ buttonText, ...props}: ButtonProps) => {
-    return (
-        <button {...props}>{buttonText}</button>
-    )
-}
+export const Button = ({ buttonText, ...props }: ButtonProps) => {
+  return <StyledButton {...props}>{buttonText}</StyledButton>;
+};

@@ -1,32 +1,30 @@
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import { LoginPage } from './page/LoginPage/LoginPage'
-import { SignUpPage } from './page/SignUp/SignUp'
-import { MainPage } from './page/MainPage/MainPage'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { LoginPage } from "./page/LoginPage/LoginPage";
+import RegistrationPage from "./page/RegistrationPage/RegistrationPage";
+import { MainPage } from "./page/MainPage/MainPage";
+// import { AppStyledContainer } from './App.style'
 
 const router = createBrowserRouter([
   {
     path: "/login",
-    element: <LoginPage />
+    element: <LoginPage />,
   },
   {
     path: "/signUp",
-    element: <SignUpPage />
+    element: <RegistrationPage />,
   },
   {
     path: "/",
-    element: <MainPage />
+    element: <MainPage />,
   },
-])
+]);
 
 function App() {
-
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  )
+    // <AppStyledContainer>
+    // </AppStyledContainer>
+    <RouterProvider router={router} />
+  );
 }
 
-export default App
+export default App;

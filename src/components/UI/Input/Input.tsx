@@ -1,13 +1,24 @@
+import { ErrorMessage } from "../../../page/LoginPage/LoginPage.style";
+import { StyledInput } from "./input.style";
+
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-	errorMessage: string;
-	isError: boolean;
+  errorMessage: string | undefined;
+  isError: boolean;
+  type?: string;
 }
 
-export const Input = ({isError, errorMessage}: InputProps) => {
-	return (
-		<div className={isError? "errorInput" : "defaultInput"}>
-			<input />
-			{isError && (<span>{errorMessage}</span>)}
-		</div>
-	)
-}
+export const Input = ({
+  isError,
+  errorMessage,
+  type,
+  ...props
+}: InputProps) => {
+  return (
+    <>
+      <StyledInput type={type} {...props} />
+      {isError && (
+        <ErrorMessage className="errorMessage">{errorMessage}</ErrorMessage>
+      )}
+    </>
+  );
+};

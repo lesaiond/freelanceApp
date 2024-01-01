@@ -1,62 +1,102 @@
-import { useState } from "react";
-import { Input } from "../../components/UI/Input/Input";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../components/UI/Button/Button";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-interface FormData {
+import { Input } from "../../components/UI/Input/Input";
+import { LoginStyledContainer } from "./LoginPage.style";
+import { Button } from "../../components/UI/Button/Button";
+import StyledLink from "../../components/StyledLink/StyledLink";
+import { useNavigate } from "react-router-dom";
+// import { BoxShadow } from "../../components/BoxShadow/BoxShadow";
+
+interface LoginFormInputs {
   username: string;
-  mail: string;
+  userpassword: string;
 }
 
-export const LoginPage = () => {
-  const [showError, setShowError] = useState(false);
-  const { handleSubmit, control } = useForm<FormData>();
-  const navigate = useNavigate();
+const schema = yup.object().shape({
+  username: yup.string().required("Username is required"),
+  userpassword: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters long"),
+});
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+export const LoginPage: React.FC = () => {
+  const navigate = useNavigate()
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data: LoginFormInputs) => {
+    console.log("you submited");
+    console.log(!!errors.userpassword);
+    navigate("/")
     console.log(data);
-    setShowError(true);
   };
+
   return (
     <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="username"
-          control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="user"
-              type="text"
-              errorMessage="Error"
-              isError={showError}
-              {...field}
-            />
-          )}
-        />
-        <Controller
-          name="mail"
-          control={control}
-          render={({ field }) => (
-            <Input
-              placeholder="mail"
-              type="email"
-              errorMessage="Error"
-              isError={showError}
-              {...field}
-            />
-          )}
-        />
-        <Button type="submit" buttonText="Login" />
-      </form>
-      <span>
-        Don`t have a account
-        <span className="orange" onClick={() => navigate("/signUp")}>
-          {" "}
-          Sign{" "}
-        </span>
-      </span>
+      <LoginStyledContainer>
+        <div className="loginContainer">
+          <h1>Login</h1>
+          <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <Controller
+                name="username"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <>
+                    <Input
+                      placeholder="введите пароль"
+                      id="username"
+                      type="text"
+                      className="input"
+                      errorMessage={errors.username?.message}
+                      isError={!!errors.username}
+                      {...field}
+                    />
+                  </>
+                )}
+              />
+            </div>
+
+            <div>
+              <Controller
+                name="userpassword"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <>
+                    <Input
+                      placeholder="введите пароль"
+                      type="password"
+                      className="input"
+                      errorMessage={errors.userpassword?.message}
+                      isError={!!errors.userpassword}
+                      {...field}
+                    />
+                  </>
+                )}
+              />
+            </div>
+
+            <Button buttonText="Submit" type="submit" className="button" />
+          </form>
+
+          <div  onClick={() => navigate("/signup")} className="signup-text">
+            Don't have an account 
+            <StyledLink> sign up</StyledLink>
+          </div>
+        </div>
+      </LoginStyledContainer>
     </>
   );
 };
