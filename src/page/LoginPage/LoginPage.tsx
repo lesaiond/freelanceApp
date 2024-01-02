@@ -8,6 +8,8 @@ import { LoginStyledContainer } from "./LoginPage.style";
 import { Button } from "../../components/UI/Button/Button";
 import StyledLink from "../../components/StyledLink/StyledLink";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slices/useSlice";
 // import { BoxShadow } from "../../components/BoxShadow/BoxShadow";
 
 interface LoginFormInputs {
@@ -24,7 +26,8 @@ const schema = yup.object().shape({
 });
 
 export const LoginPage: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate()  
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -37,6 +40,7 @@ export const LoginPage: React.FC = () => {
   const onSubmit = (data: LoginFormInputs) => {
     console.log("you submited");
     console.log(!!errors.userpassword);
+    dispatch(setUser(data));
     navigate("/")
     console.log(data);
   };

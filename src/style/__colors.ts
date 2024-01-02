@@ -1,5 +1,9 @@
+const isTheme = localStorage.getItem("theme")
+console.log(isTheme);
+
+
 export const colors = {
-  primary: "#3498db",    // Голубой
+  primary: isTheme ? "#3498db" : "#000000", //"#3498db",    // Голубой
   secondary: "#95a5a6",  // Серый
   success: "#2ecc71",    // Зеленый
   danger: "#e74c3c",     // Красный

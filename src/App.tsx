@@ -1,4 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store/store';
+
 import { LoginPage } from "./page/LoginPage/LoginPage";
 import RegistrationPage from "./page/RegistrationPage/RegistrationPage";
 import { MainPage } from "./page/MainPage/MainPage";
@@ -21,9 +24,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    // <AppStyledContainer>
-    // </AppStyledContainer>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 
