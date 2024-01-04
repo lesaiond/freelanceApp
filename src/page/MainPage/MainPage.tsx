@@ -1,10 +1,11 @@
 import JobListContainer from "../../components/JobsContainer/jobsContainer";
+import { MainPageStyled } from "./MainPage.style";
 
 export const MainPage: React.FC = () => {
   return (
-    <div>
-      <h1>Your React App</h1>
+    <MainPageStyled>
+      <h1>Main Page</h1>
       <JobListContainer />
-    </div>
+    </MainPageStyled>
   );
 };
