@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import { colors } from "../../style/__colors";
+import { colors, colorsDark } from "../../style/__colors";
 
-const { primary } = colors
+const { primeColor } = colors;
+const { darkPrimeColor } = colorsDark;
 
 export const StyledLinkWrapper = styled.a`
   text-decoration: none;
-  color: ${primary};
+  color: ${primeColor};
   &:hover {
+    cursor: pointer;
     text-decoration: underline;
+  }
+  &.dark {
+    color: ${darkPrimeColor};
   }
 `;

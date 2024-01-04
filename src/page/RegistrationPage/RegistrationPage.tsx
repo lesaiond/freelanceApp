@@ -9,7 +9,7 @@ import { Input } from "../../components/UI/Input/Input";
 import { Button } from "../../components/UI/Button/Button";
 import StyledLink from "../../components/StyledLink/StyledLink";
 import { BoxShadow } from "../../components/BoxShadow/BoxShadow";
-import { RegistrationStyledContainer } from "./RegistrationPage.style";
+import { ErrorMessage, RegistrationStyledContainer } from "./RegistrationPage.style";
 
 // Определение схемы для валидации
 const schema = yup.object().shape({
@@ -19,14 +19,14 @@ const schema = yup.object().shape({
     .string()
     .required("Password is required")
     .min(8, "Password must be at least 8 characters long"),
-  userType: yup.string().oneOf(["freelance", "client"]).required(),
+  userType: yup.string().oneOf(["freelance", "client", ""]).required(),
 });
 
 interface FormInput {
   useremail: string;
   username: string;
   userpassword: string;
-  userType: NonNullable<"freelance" | "client" | undefined>; 
+  userType: NonNullable<"freelance" | "client" | "" | undefined>;
 }
 
 const RegistrationPage: React.FC = () => {
@@ -42,7 +42,7 @@ const RegistrationPage: React.FC = () => {
 
   const onSubmit = (data: FormInput) => {
     console.log(data);
-    navigate("/")
+    navigate("/login");
   };
 
   return (
@@ -92,16 +92,18 @@ const RegistrationPage: React.FC = () => {
             )}
           />
 
-          <Controller
-            name="userType"
-            control={control}
-            render={({ field }) => (
-              <select {...field}>
-                <option value="freelance">Freelance</option>
-                <option value="client">Client</option>
-              </select>
-            )}
-          />
+            <Controller
+              name="userType"
+              control={control}
+              render={({ field }) => (
+                <select {...field} className={errors.userType && "errorMessage"}>
+                  <option value="" >choose any one</option>
+                  <option value="freelance">Freelance</option>
+                  <option value="client" disabled>Client</option>
+                </select>
+              )}
+            />
+            <ErrorMessage>{errors.userType?.message}</ErrorMessage>
 
           <Button type="submit" buttonText="Submit" />
         </form>

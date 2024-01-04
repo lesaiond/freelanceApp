@@ -1,18 +1,23 @@
 import styled from "styled-components";
-import { colors } from "../../../style/__colors";
+import { colors, colorsDark, } from "../../../style/__colors";
 
-const { primary, white } = colors;
+const { primeColor, hoverText } = colors;
+const { darkPrimeColor, darkHoverText } = colorsDark
 
 export const StyledButton = styled.button`
   width: 100%;
   padding: 10px;
-  color: ${white};
-  background: ${primary};
+  color: ${hoverText};
+  background: ${primeColor};
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
+  
   &:hover {
-    background-color: darken(${primary}, 10%);
+    background-color: darken(${primeColor}, 10%);
+  }
+  &.dark{
+    background: ${darkPrimeColor};
+    color: ${darkHoverText};
   }
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -28,6 +28,11 @@ const schema = yup.object().shape({
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate()  
   const dispatch = useDispatch();
+  const theme = localStorage.getItem("theme")
+
+  useEffect(() => {
+    console.log("login started", !theme);
+  }, [])
 
   const {
     control,
@@ -38,8 +43,6 @@ export const LoginPage: React.FC = () => {
   });
 
   const onSubmit = (data: LoginFormInputs) => {
-    console.log("you submited");
-    console.log(!!errors.userpassword);
     dispatch(setUser(data));
     navigate("/")
     console.log(data);
@@ -48,7 +51,7 @@ export const LoginPage: React.FC = () => {
   return (
     <>
       <LoginStyledContainer>
-        <div className="loginContainer">
+        <div className={`loginContainer ${theme}`}>
           <h1>Login</h1>
           <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
             <div>
@@ -62,7 +65,6 @@ export const LoginPage: React.FC = () => {
                       placeholder="введите пароль"
                       id="username"
                       type="text"
-                      className="input"
                       errorMessage={errors.username?.message}
                       isError={!!errors.username}
                       {...field}
@@ -82,7 +84,6 @@ export const LoginPage: React.FC = () => {
                     <Input
                       placeholder="введите пароль"
                       type="password"
-                      className="input"
                       errorMessage={errors.userpassword?.message}
                       isError={!!errors.userpassword}
                       {...field}
@@ -92,12 +93,12 @@ export const LoginPage: React.FC = () => {
               />
             </div>
 
-            <Button buttonText="Submit" type="submit" className="button" />
+            <Button buttonText="Submit" type="submit" className={`button ${theme}`} />
           </form>
 
           <div  onClick={() => navigate("/signup")} className="signup-text">
             Don't have an account 
-            <StyledLink> sign up</StyledLink>
+            <StyledLink className="dark"> sign up</StyledLink>
           </div>
         </div>
       </LoginStyledContainer>

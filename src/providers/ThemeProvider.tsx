@@ -1,21 +1,21 @@
-import React, { ReactNode, createContext, useEffect } from "react";
+// import React, { ReactNode, createContext, useEffect } from "react";
 
-export const Themecontext = createContext();
+// export const Themecontext = createContext();
 
-interface IThemeProps {
-  children: ReactNode;
-}
+// interface IThemeProps {
+//   children: ReactNode;
+// }
 
-export const ThemeProvider: React.FC<IThemeProps> = ({children}) => {
+// export const ThemeProvider: React.FC<IThemeProps> = ({children}) => {
 
-  useEffect(() => {
+//   useEffect(() => {
 
-  }, [])
+//   }, [])
 
 
-  return (
-    <Themecontext.Provider value={[theme, setTheme]}>
-      {children}
-    </Themecontext.Provider>
-  )
-}
+//   return (
+//     <Themecontext.Provider value={[theme, setTheme]}>
+//       {children}
+//     </Themecontext.Provider>
+//   )
+// }

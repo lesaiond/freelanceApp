@@ -13,9 +13,11 @@ export const Input = ({
   type,
   ...props
 }: InputProps) => {
+  console.log(isError);
+  
   return (
     <>
-      <StyledInput type={type} {...props} />
+      <StyledInput className={isError ? "errorMessage ":" "} type={type} {...props} />
       {isError && (
         <ErrorMessage className="errorMessage">{errorMessage}</ErrorMessage>
       )}

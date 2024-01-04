@@ -1,15 +1,56 @@
-const isTheme = localStorage.getItem("theme")
+const isTheme = localStorage.getItem("theme");
 console.log(isTheme);
 
-
 export const colors = {
-  primary: isTheme ? "#3498db" : "#000000", //"#3498db",    // Голубой
-  secondary: "#95a5a6",  // Серый
-  success: "#2ecc71",    // Зеленый
-  danger: "#e74c3c",     // Красный
-  warning: "#f39c12",    // Желтый
-  info: "#3498db",       // Голубой (можно изменить)
-  light: "#ecf0f1",      // Светло-серый
-  dark: "#34495e",       // Темно-синий
-  white: "#ffffff",      // Белый
+  bgc: isTheme ? "#121212" : "#f6f6f6",
+  elemsBgc: isTheme ? "#1e1e1e" : "#fff",
+  primeColor: isTheme ? "#bb86fc" : "#526ed3",
+  darkPrime: isTheme ? "#3700b3" : "#314692",
+  lightPrime: isTheme ? "#6200ea" : "#717b9f",
+  textColor: isTheme ? "#ffffff" : "#303030",
+  hoverText: isTheme ? "#000000" : "#fff",
+  darkGray: isTheme ? "#8e8e8e" : "#6d6f7a",
+  gray: isTheme ? "#9e9e9e" : "#717171",
+  lightGray: isTheme ? "#424242" : "#e3e3e3",
+  placeholderColor: isTheme ? "#757575" : "#8c8c8c",
+  disabledBgc: isTheme ? "#2c2c2c" : "#C1C6D3",
+  red: isTheme ? "#cf6679" : "#dc2020",
+  green: isTheme ? "#57b589" : "#36ac82",
+  blue: isTheme ? "#42a5f5" : "#399efa",
+};
+
+export const colorsLight = {
+  bgc: "#f6f6f6",
+  elemsBgc: "#fff",
+  primeColo: "#526ed3",
+  darkPrime: "#314692",
+  lightPrime: "#717b9f",
+  textColor: "#303030",
+  hoverTex: "#fff",
+  darkGray: "#6d6f7a",
+  gray: "#717171",
+  lightGray: "#e3e3e3",
+  placeholderColor: "#8c8c8c",
+  disabledBgc: "#C1C6D3",
+  red: "#dc2020",
+  green: "#36ac82",
+  blue: "#399efa",
+};
+
+export const colorsDark = {
+  darkBgc: "#121212",
+  darkElemsBgc: "#1e1e1e",
+  darkPrimeColor: "#bb86fc",
+  darkDarkPrime: "#3700b3",
+  darkLightPrime: "#6200ea",
+  darkTextColor: "#ffffff",
+  darkHoverText: "#000000",
+  darkDarkGray: "#8e8e8e",
+  darkGray: "#9e9e9e",
+  darkLightGray: "#424242",
+  darkPlaceholderColor: "#757575",
+  darkDisabledBgc: "#2c2c2c",
+  darkRed: "#cf6679",
+  darkGreen: "#57b589",
+  darkBlue: "#42a5f5",
 };

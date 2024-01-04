@@ -2,19 +2,19 @@
 import styled from "styled-components";
 import { colors } from "./style/__colors";
 
-const { primary, light, danger } = colors;
+const { textColor, bgc, red } = colors;
 
 export const AppStyledContainer = styled.div`
-  background-color: ${light};
+  background-color: ${bgc};
   padding: 0;
   margin: 0;
 `;
 
 export const StyledHeading = styled.h1`
-  color: ${primary};
+  color: ${textColor};
 `;
 
 export const errorMessage = styled.div`
-  color: ${danger};
+  color: ${red};
   margin-bottom: 15px;
 `;
