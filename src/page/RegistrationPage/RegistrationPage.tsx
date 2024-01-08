@@ -5,11 +5,12 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 
 import { Input } from "../../components/UI/Input/Input";
-
 import { Button } from "../../components/UI/Button/Button";
 import StyledLink from "../../components/StyledLink/StyledLink";
+import { ErrorMessage } from "../LoginPage/LoginPage.style";
 import { BoxShadow } from "../../components/BoxShadow/BoxShadow";
-import { ErrorMessage, RegistrationStyledContainer } from "./RegistrationPage.style";
+
+import { RegistrationStyledContainer } from "./RegistrationPage.style";
 
 // Определение схемы для валидации
 const schema = yup.object().shape({
@@ -47,32 +48,43 @@ const RegistrationPage: React.FC = () => {
 
   return (
     <BoxShadow>
+      <img
+        src="/public/img/authorization/linkedin-sales-solutions-UK1N66KUkMk-unsplash 1.png"
+        className="mainImg"
+        alt=""
+      />
       <RegistrationStyledContainer>
-        <h1>Registration</h1>
+        <h1>Sign Up</h1>
+        <span className="subText">
+          Type Email, Username and password to sign up
+        </span>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name="useremail"
-            control={control}
-            render={({ field }) => (
-              <Input
-                type="email"
-                placeholder="Email"
-                isError={!!errors.useremail}
-                errorMessage={errors.useremail?.message}
-                {...field}
-              />
-            )}
-          />
-
           <Controller
             name="username"
             control={control}
             render={({ field }) => (
               <Input
+                imgSrc="svg/person.svg"
                 placeholder="Username"
                 isError={!!errors.username}
                 errorMessage={errors.username?.message}
                 type="text"
+                ref={field.ref}
+                {...field}
+              />
+            )}
+          />
+          <Controller
+            name="useremail"
+            control={control}
+            render={({ field }) => (
+              <Input
+                imgSrc="svg/mail.svg"
+                type="email"
+                placeholder="Email"
+                isError={!!errors.useremail}
+                errorMessage={errors.useremail?.message}
+                ref={field.ref}
                 {...field}
               />
             )}
@@ -83,6 +95,8 @@ const RegistrationPage: React.FC = () => {
             control={control}
             render={({ field }) => (
               <Input
+                ref={field.ref}
+                imgSrc="svg/lock.svg"
                 placeholder="Password"
                 isError={!!errors.userpassword}
                 errorMessage={errors.userpassword?.message}
@@ -92,24 +106,26 @@ const RegistrationPage: React.FC = () => {
             )}
           />
 
-            <Controller
-              name="userType"
-              control={control}
-              render={({ field }) => (
-                <select {...field} className={errors.userType && "errorMessage"}>
-                  <option value="" >choose any one</option>
-                  <option value="freelance">Freelance</option>
-                  <option value="client" disabled>Client</option>
-                </select>
-              )}
-            />
-            <ErrorMessage>{errors.userType?.message}</ErrorMessage>
+          <Controller
+            name="userType"
+            control={control}
+            render={({ field }) => (
+              <select {...field} className={errors.userType && "errorMessage"}>
+                <option value="">choose any one</option>
+                <option value="freelance">Freelance</option>
+                <option value="client" disabled>
+                  Client
+                </option>
+              </select>
+            )}
+          />
+          <ErrorMessage>{errors.userType?.message}</ErrorMessage>
 
-          <Button type="submit" buttonText="Submit" />
+          <Button type="submit" buttonText="Sign Up" />
         </form>
         <div onClick={() => navigate("/login")} className="signup-text">
-          Already have an account
-          <StyledLink> Sign in</StyledLink>
+          Don’t have an account
+          <StyledLink className="secondPrimeColor"> Sign in</StyledLink> now
         </div>
       </RegistrationStyledContainer>
     </BoxShadow>

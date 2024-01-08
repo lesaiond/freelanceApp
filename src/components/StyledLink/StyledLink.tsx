@@ -7,7 +7,7 @@ interface StyledLinkProps {
 }
 
 const StyledLink: React.FC<StyledLinkProps> = ({ children }) => {
-  return <StyledLinkWrapper >{children}</StyledLinkWrapper>;
+  return <StyledLinkWrapper className='secondPrimeColor' >{children}</StyledLinkWrapper>;
 };
 
 export default StyledLink;

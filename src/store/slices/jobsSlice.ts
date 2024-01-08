@@ -1,12 +1,9 @@
-// jobsSlice.ts
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface Job {
   id: number;
   title: string;
-  // Добавьте другие свойства вакансии, если они есть
 }
 
 export interface JobsState {
@@ -60,7 +57,7 @@ export const fetchJobList = createAsyncThunk('jobs/fetchJobList', async (params:
     return data.results as Job[];
   } catch (error: any) {
     console.error('Error fetching job list:', error.message);
-    throw error; // Rethrow the error for higher-level error handling
+    throw error;
   }
 });
 

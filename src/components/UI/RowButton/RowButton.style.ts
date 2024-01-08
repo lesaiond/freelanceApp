@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { colors } from "../../../style/__colors";
+import { newColors } from "../../../style/__colors";
 
-const {textColor, primeColor} = colors
+const {textColor, elemsBgc} = newColors
+
 
 export const RowButtonStyled = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ export const RowButtonStyled = styled.div`
     font-size: 28px;
     border: none;
     color: ${textColor};
-    background: ${primeColor};
+    background: ${elemsBgc};
     border-radius: 50%;
     width: 50px;
     height: 50px;

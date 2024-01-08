@@ -7,6 +7,11 @@ import RegistrationPage from "./page/RegistrationPage/RegistrationPage";
 import { MainPage } from "./page/MainPage/MainPage";
 import { AppStyledContainer } from "./App.style";
 import { ThemeToggle } from "./theme/ThemeToggle";
+import JobDetails from "./components/JobDetails/JobDetails";
+import { AdminPage } from "./page/AdminPage/AdminPage";
+import AdminProjectsPage from "./page/AdminPage/AdminProjectsPage";
+import AdminPageStatics from "./page/AdminPage/AdminPageStatics";
+import AdminPageSettings from "./page/AdminPage/AdminPageSettings";
 // import { AppStyledContainer } from './App.style'
 
 const router = createBrowserRouter([
@@ -21,6 +26,26 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainPage />,
+  },
+  {
+    path: "/job",
+    element: <JobDetails />,
+  },
+  {
+    path: "/admin",
+    element: <AdminPage />,
+  },
+  {
+    path: "/admin/projects",
+    element: <AdminProjectsPage />,
+  },
+  {
+    path: "/admin/statics",
+    element: <AdminPageStatics />,
+  },
+  {
+    path: "/admin/settings",
+    element: <AdminPageSettings />,
   },
 ]);
 

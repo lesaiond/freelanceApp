@@ -2,10 +2,10 @@
 import styled from "styled-components";
 import { colors } from "./style/__colors";
 
-const { textColor, bgc, red } = colors;
+const { textColor, red } = colors;
 
 export const AppStyledContainer = styled.div`
-  background-color: ${bgc};
+  background-color: #fff;
   padding: 0;
   margin: 0;
 `;

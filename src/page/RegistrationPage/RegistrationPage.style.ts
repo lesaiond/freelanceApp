@@ -1,26 +1,22 @@
 // LoginStyles.ts
 import styled from "styled-components";
-import { colors } from "../../style/__colors";
+import { colors, newColors } from "../../style/__colors";
 
-const { primeColor, red, textColor, elemsBgc, lightGray } = colors;
+const { primeColor, red, textColor, elemsBgc } = colors;
+const { subTextColor, secondPrimeColor, borderColor } = newColors
 
 export const RegistrationStyledContainer = styled.div`
-	margin-top: 5vw;
-  max-width: 600px;
-  min-width: 350px;
-  -webkit-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+	margin: 0 auto;
   background-color: ${elemsBgc};
-  box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
   color: ${textColor};
-	
+	border-radius: 20px;
   form {
 		display: grid;
-    padding: 20px;
+    margin: 30px 0 0 0;
   }
 
 	select {
-    border: 1px solid ${lightGray};
+    border: 1px solid ${borderColor};
     border-radius: 4px;
     margin-bottom: 10px;
     background-color: ${elemsBgc}; 
@@ -30,25 +26,26 @@ export const RegistrationStyledContainer = styled.div`
     border: 1px solid ${red};
     color: ${red};
   }
-  /* &:enabled {
-  color: ${textColor};
-  border: 1px solid ${lightGray};
-} */
 	}
 
   h1 {
-    margin: 0 auto;
-    padding-top: 15px;
-    text-align: center;
-  }
-  
+      font-size: 32px; 
+      font-weight: 400;
+    }
+    .subText {
+      color: ${subTextColor};
+    }
   .signup-text {
     padding: 5px 5px 20px 5px;
     text-align: center;
+    .secondPrimeColor {
+      color: ${secondPrimeColor};
+    }
   }
 
   button {
     min-width: 280px;
+    background: ${secondPrimeColor};
   }
   input {
     min-width: 280px;
@@ -66,10 +63,4 @@ export const Button = styled.button`
   &:hover {
     background-color: darken(${primeColor}, 10%);
   }
-`;
-
-export const ErrorMessage = styled.div`
-  color: ${red};
-  margin-bottom: 15px;
-  margin-top: -5px;
 `;

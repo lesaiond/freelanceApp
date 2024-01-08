@@ -1,28 +1,31 @@
 import styled from "styled-components";
-import { colors, colorsDark } from "../../../style/__colors";
+import { newColors } from "../../../style/__colors";
 
-const { textColor, lightGray, elemsBgc, red } = colors;
-const { darkTextColor, darkLightGray, darkElemsBgc, } = colorsDark;
+const { borderColor, bgc, red } = newColors;
 
-export const StyledInput = styled.input`
-  padding: 10px;
-  border: 1px solid ${lightGray};
-  border-radius: 4px;
+export const StyledInput = styled.div`
+  border: 1px solid ${borderColor};
+  border-radius: 10px;
+  background: ${bgc};
   margin-bottom: 10px;
-  background-color: ${elemsBgc}; 
-  color: ${textColor};
-  outline: none;
-  &.dark {
-    border: 1px solid ${darkLightGray};
-    background-color: ${darkElemsBgc}; 
-    color: ${darkTextColor};
+  .row {
+    display: flex;
+    align-items: center;
   }
   &.errorMessage{
-    border: 1px solid ${red};
-    color: ${red}
+    border-radius: 10px;
+    border: 1.2px solid ${red};
+    input {
+      color: ${red};
+    }
   }
-  &:focus {
-    color: ${textColor};
-    border: 1px solid ${lightGray};
+  
+  input {
+    width: 100%;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 12px 0px 12px 5px;
+    border: none;
+    outline: none;
   }
 `;

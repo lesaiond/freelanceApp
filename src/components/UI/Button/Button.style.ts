@@ -1,23 +1,19 @@
 import styled from "styled-components";
-import { colors, colorsDark, } from "../../../style/__colors";
+import { newColors, } from "../../../style/__colors";
 
-const { primeColor, hoverText } = colors;
-const { darkPrimeColor, darkHoverText } = colorsDark
+const { primeColor, bgc } = newColors
 
 export const StyledButton = styled.button`
-  width: 100%;
-  padding: 10px;
-  color: ${hoverText};
+  padding: 17px 130px;
+  font-size: 15;
   background: ${primeColor};
+  color: ${bgc};
+  box-shadow: 0px 5px 15px 0px rgba(255, 229, 178, 0.25); 
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
-  
+  transition: all .3s;
   &:hover {
     background-color: darken(${primeColor}, 10%);
-  }
-  &.dark{
-    background: ${darkPrimeColor};
-    color: ${darkHoverText};
   }
 `;

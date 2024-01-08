@@ -1,49 +1,67 @@
 import styled from "styled-components";
-import { colors } from "../../style/__colors";
+import { newColors, colors } from "../../style/__colors";
+
+const { bgc, textColor, elemsBgc } = newColors;
 
 export const JobsContainerStyled = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1.5vw;
-  @media (max-width: 1100px) {
-    grid-template-columns: 1fr 1fr;
-  }
+  background: ${bgc};
+  color: ${textColor};
+  font-family: Roboto;
 `;
 
 export const JobCard = styled.div`
   padding: 20px;
-  border: 1px solid ${colors.darkGray};
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  background: ${elemsBgc};
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  gap: 10%;
+  margin: 0px 0% 66px 0;
+  margin-left: 30px;
+  margin-top: 20px;
 `;
 
 export const JobName = styled.span`
-  font-size: 1.2em;
-  font-weight: bold;
-`;
+  min-width: 170px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  `;
 
-export const CompanyName = styled.span`
+export const CompanyName = styled.h3`
+  min-width: 170px;
   display: block;
-  margin-bottom: 10px;
   color: ${colors.textColor};
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 400;
 `;
 
 export const PublicationDate = styled.span`
   display: block;
-  margin-bottom: 10px;
   color: ${colors.textColor};
 `;
 
 export const JobContents = styled.div`
+  margin-top: 11px;
   margin-bottom: 10px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  br {
+    display: none;
+  }
+  b {
+    font-weight: 500;
+  }
 `;
 
 export const DetailsButton = styled.button`
-  background-color: ${colors.primeColor};
-  color: #fff;
+  background-color: ${bgc};
+  color: ${textColor};
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
@@ -51,6 +69,8 @@ export const DetailsButton = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
+    color: ${bgc};
+
     background-color: ${colors.darkPrime};
   }
 `;

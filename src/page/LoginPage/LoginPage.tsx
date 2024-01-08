@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -10,7 +10,6 @@ import StyledLink from "../../components/StyledLink/StyledLink";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/useSlice";
-// import { BoxShadow } from "../../components/BoxShadow/BoxShadow";
 
 interface LoginFormInputs {
   username: string;
@@ -26,13 +25,9 @@ const schema = yup.object().shape({
 });
 
 export const LoginPage: React.FC = () => {
-  const navigate = useNavigate()  
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const theme = localStorage.getItem("theme")
-
-  useEffect(() => {
-    console.log("login started", !theme);
-  }, [])
+  const theme = localStorage.getItem("theme");
 
   const {
     control,
@@ -44,35 +39,46 @@ export const LoginPage: React.FC = () => {
 
   const onSubmit = (data: LoginFormInputs) => {
     dispatch(setUser(data));
-    navigate("/")
-    console.log(data);
+    if(data.username === "admin" && data.userpassword === "00000000") {
+      navigate("/admin")
+    }else {
+      navigate("/");
+
+    }
+    console.log("admin?", data.username === "admin" && data.userpassword == "00000000");
   };
 
   return (
     <>
       <LoginStyledContainer>
+        <img
+          className="mainImg"
+          src="../../../public/img/authorization/linkedin-sales-solutions-UK1N66KUkMk-unsplash 1.png"
+          alt=""
+        />
         <div className={`loginContainer ${theme}`}>
-          <h1>Login</h1>
+          <h1>Sign In</h1>
+          <span className="subText">Type your username and password to sign in</span>
           <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <Controller
-                name="username"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <>
-                    <Input
-                      placeholder="введите пароль"
-                      id="username"
-                      type="text"
-                      errorMessage={errors.username?.message}
-                      isError={!!errors.username}
-                      {...field}
-                    />
-                  </>
-                )}
-              />
-            </div>
+            <Controller
+              name="username"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <>
+                  <Input
+                    imgSrc="svg/person.svg"
+                    placeholder="введите пароль"
+                    id="username"
+                    type="text"
+                    errorMessage={errors.username?.message}
+                    isError={!!errors.username}
+                    ref={field.ref}
+                    {...field}
+                  />
+                </>
+              )}
+            />
 
             <div>
               <Controller
@@ -82,10 +88,12 @@ export const LoginPage: React.FC = () => {
                 render={({ field }) => (
                   <>
                     <Input
+                      imgSrc="/svg/lock.svg"
                       placeholder="введите пароль"
                       type="password"
                       errorMessage={errors.userpassword?.message}
                       isError={!!errors.userpassword}
+                      ref={field.ref}
                       {...field}
                     />
                   </>
@@ -93,12 +101,16 @@ export const LoginPage: React.FC = () => {
               />
             </div>
 
-            <Button buttonText="Submit" type="submit" className={`button ${theme}`} />
+            <Button
+              buttonText="Sign in"
+              type="submit"
+              className={`button ${theme}`}
+            />
           </form>
 
-          <div  onClick={() => navigate("/signup")} className="signup-text">
-            Don't have an account 
-            <StyledLink className="dark"> sign up</StyledLink>
+          <div onClick={() => navigate("/signup")} className="signupText">
+            Don’t have an account
+            <StyledLink className=""> Sign Up </StyledLink>now
           </div>
         </div>
       </LoginStyledContainer>

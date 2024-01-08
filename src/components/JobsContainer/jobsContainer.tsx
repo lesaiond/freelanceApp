@@ -13,28 +13,31 @@ import {
   PublicationDate,
 } from "./jobsContainer.style";
 import { RowButton } from "../UI/RowButton/RowButton";
+import { fetchJobDetails } from "../../store/slices/jobsIdSlice";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
-interface Company {
+export interface ICompanyProps {
   id: number;
   short_name: string;
   name: string;
 }
 
-interface JobLocation {
+export interface IJobLocationProps {
   name: string;
 }
 
-interface JobLevel {
+export interface IJobLevelProps {
   name: string;
   short_name: string;
 }
 
-interface Job {
+export interface IJobProps {
   id: number;
   name: string;
   contents: string;
-  levels: JobLevel[];
-  locations: JobLocation[];
+  levels: IJobLevelProps[];
+  locations: IJobLocationProps[];
   model_type: string;
   publication_date: string;
   refs: {
@@ -43,15 +46,16 @@ interface Job {
   short_name: string;
   tags: string[];
   type: string;
-  company: Company[];
+  company: ICompanyProps[];
 }
 
 const JobListContainer: React.FC = () => {
   const [page, setpage] = useState(0);
+  const navigate = useNavigate();
 
-  const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+  const dispatch: ThunkDispatch<RootState, null, AnyAction> = useDispatch();
   const jobList = useSelector(
-    (state: { jobs: { jobList: Job[] } }) => state.jobs.jobList
+    (state: { jobs: { jobList: IJobProps[] } }) => state.jobs.jobList
   );
 
   useEffect(() => {
@@ -59,36 +63,45 @@ const JobListContainer: React.FC = () => {
       fetchJobList({ page: page, descending: true /* other parameters */ })
     );
   }, [dispatch, page]);
+  const handleDetailsClick = (jobId: number) => {
+    dispatch(fetchJobDetails(jobId));
+    navigate("/job");
+  };
 
   if (jobList.length === 0) {
     return <div>Loading...</div>;
   }
 
   const formatDate = (dateString: string) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    const formattedDate = new Date(dateString).toLocaleDateString(
-      "ru-RU",
-      options
-    );
+    const formattedDate = moment(dateString).format('D-MMM-YY');
     return formattedDate;
   };
+  console.log(jobList);
+  
   return (
     <div>
-      <h1>Jobs</h1>
       <JobsContainerStyled>
-        {jobList.map((job) => (
+        {jobList.map((job: IJobProps) => (
           <JobCard key={job.id}>
-            <JobName>{job.name} {job.id}</JobName>
-            <JobContents
-              dangerouslySetInnerHTML={{
-                __html: truncateContents(job.contents, 200),
-              }}
-            />
-            <PublicationDate>
-              Publication Date: {formatDate(job.publication_date)}
-            </PublicationDate>
-            <CompanyName>Company: {job.company.name}</CompanyName>
-            <DetailsButton>Подробнее</DetailsButton>
+            <div>
+              <JobName onClick={() => handleDetailsClick(job.id)}>
+                {job.name} {job.id}
+              </JobName>
+              <JobContents
+                dangerouslySetInnerHTML={{
+                  __html: truncateContents(job.contents, 200),
+                }}
+              />
+            </div>
+            <div>
+              <PublicationDate>
+                Due Date: {formatDate(job.publication_date)}
+              </PublicationDate>
+              <CompanyName>Company: {job.company.name}</CompanyName>
+              <DetailsButton onClick={() => handleDetailsClick(job.id)}>
+              more info
+              </DetailsButton>{" "}
+            </div>
           </JobCard>
         ))}
       </JobsContainerStyled>

@@ -1,13 +1,14 @@
-const isTheme = localStorage.getItem("theme");
+// const isTheme = localStorage.getItem("theme");
+const isTheme = false;
 console.log(isTheme);
 
 export const colors = {
   bgc: isTheme ? "#121212" : "#f6f6f6",
   elemsBgc: isTheme ? "#1e1e1e" : "#fff",
-  primeColor: isTheme ? "#bb86fc" : "#526ed3",
-  darkPrime: isTheme ? "#3700b3" : "#314692",
+  primeColor: isTheme ? "#FFBD3C" : "#526ed3",
+  darkPrime: isTheme ? "#913bfa" : "#314692",
   lightPrime: isTheme ? "#6200ea" : "#717b9f",
-  textColor: isTheme ? "#ffffff" : "#303030",
+  textColor: isTheme ? "#e8e6e3" : "#303030",
   hoverText: isTheme ? "#000000" : "#fff",
   darkGray: isTheme ? "#8e8e8e" : "#6d6f7a",
   gray: isTheme ? "#9e9e9e" : "#717171",
@@ -22,7 +23,7 @@ export const colors = {
 export const colorsLight = {
   bgc: "#f6f6f6",
   elemsBgc: "#fff",
-  primeColo: "#526ed3",
+  primeColor: "#526ed3",
   darkPrime: "#314692",
   lightPrime: "#717b9f",
   textColor: "#303030",
@@ -54,3 +55,14 @@ export const colorsDark = {
   darkGreen: "#57b589",
   darkBlue: "#42a5f5",
 };
+
+export const newColors = {
+  borderColor:"rgba(131, 131, 131, 0.80)",
+  elemsBgc: "#EFEFEF",
+  bgc: "#fff",
+  textColor: "#282C35",
+  primeColor: "#FFBD3C",
+  secondPrimeColor: "#f00",
+  subTextColor: "#777",
+  red: "#dc2020",
+}
