@@ -58,6 +58,7 @@ export const colorsDark = {
 
 export const newColors = {
   borderColor:"rgba(131, 131, 131, 0.80)",
+  secondBorderColor:"#686868",
   elemsBgc: "#EFEFEF",
   bgc: "#fff",
   textColor: "#282C35",

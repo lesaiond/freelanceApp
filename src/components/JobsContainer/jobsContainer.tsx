@@ -16,6 +16,7 @@ import { RowButton } from "../UI/RowButton/RowButton";
 import { fetchJobDetails } from "../../store/slices/jobsIdSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import Star from "../UI/Star/Star";
 
 export interface ICompanyProps {
   id: number;
@@ -51,6 +52,8 @@ export interface IJobProps {
 
 const JobListContainer: React.FC = () => {
   const [page, setpage] = useState(0);
+  const [favorites, setFavorites] = useState<number[]>([]);
+
   const navigate = useNavigate();
 
   const dispatch: ThunkDispatch<RootState, null, AnyAction> = useDispatch();
@@ -63,21 +66,49 @@ const JobListContainer: React.FC = () => {
       fetchJobList({ page: page, descending: true /* other parameters */ })
     );
   }, [dispatch, page]);
-  const handleDetailsClick = (jobId: number) => {
-    dispatch(fetchJobDetails(jobId));
-    navigate("/job");
+
+  const handleStarClick = (jobId: number) => {
+    console.log("clicked:", jobId);
+    if (favorites.includes(jobId)) {
+      const updatedFavorites = favorites.filter((id) => id !== jobId);
+      setFavorites(updatedFavorites);
+    } else {
+      const updatedFavorites = [...favorites, jobId];
+      setFavorites(updatedFavorites);
+    }
   };
+
+  useEffect(() => {
+    console.log("its", localStorage.getItem("favorites"));
+    
+    const storedFavorites = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
+    if (storedFavorites.length > 0) {
+      setFavorites(storedFavorites);
+    }  }, []);
+  
+
+  const handleDetailsClick = (jobId: number) => {
+    
+    dispatch(fetchJobDetails(jobId));
+    navigate("/job/details");
+  };
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   if (jobList.length === 0) {
     return <div>Loading...</div>;
   }
 
   const formatDate = (dateString: string) => {
-    const formattedDate = moment(dateString).format('D-MMM-YY');
+    const formattedDate = moment(dateString).format("D-MMM-YY");
     return formattedDate;
   };
   console.log(jobList);
-  
+
   return (
     <div>
       <JobsContainerStyled>
@@ -85,7 +116,7 @@ const JobListContainer: React.FC = () => {
           <JobCard key={job.id}>
             <div>
               <JobName onClick={() => handleDetailsClick(job.id)}>
-                {job.name} {job.id}
+                {job.name}
               </JobName>
               <JobContents
                 dangerouslySetInnerHTML={{
@@ -98,9 +129,15 @@ const JobListContainer: React.FC = () => {
                 Due Date: {formatDate(job.publication_date)}
               </PublicationDate>
               <CompanyName>Company: {job.company.name}</CompanyName>
-              <DetailsButton onClick={() => handleDetailsClick(job.id)}>
-              more info
-              </DetailsButton>{" "}
+              <div className="row">
+                <DetailsButton onClick={() => handleDetailsClick(job.id)}>
+                  more info
+                </DetailsButton>
+                <Star
+                isChecked={favorites.includes(job.id)}
+                onChange={() => handleStarClick(job.id)}
+              />
+              </div>
             </div>
           </JobCard>
         ))}

@@ -7,6 +7,11 @@ export const JobsContainerStyled = styled.div`
   background: ${bgc};
   color: ${textColor};
   font-family: Roboto;
+  .row{ 
+    display: flex;
+    align-items: end;
+    gap: 15px;
+  }
 `;
 
 export const JobCard = styled.div`

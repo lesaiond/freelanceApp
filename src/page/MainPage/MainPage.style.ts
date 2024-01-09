@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { colors, colorsDark, newColors } from "../../style/__colors"; // Import colors
 
-const { textColor, } = colors;
+const { textColor } = colors;
 const { darkTextColor, darkBgc } = colorsDark;
 
 export const MainPageStyled = styled.div`
   background: ${newColors.bgc};
   color: ${textColor};
-  
+
   .mainContent {
     padding: 1.5vw 6vw;
     h2 {
@@ -36,8 +36,14 @@ export const MainPageStyled = styled.div`
       justify-content: space-between;
       gap: 40px;
       overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
       .service {
         display: flex;
+        flex: 0 0 auto;
         flex-direction: column-reverse;
         gap: 9px;
 
@@ -63,8 +69,6 @@ export const MainPageStyled = styled.div`
       }
     }
   }
-
-
 
   &.dark {
     background: ${darkBgc};

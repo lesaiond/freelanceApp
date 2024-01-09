@@ -2,7 +2,10 @@ import React from "react";
 import { StyledSearchInput } from "./SearchInput.style";
 import { Button } from "../Button/Button";
 
-const SearchInput = () => {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+}
+
+const SearchInput: React.FC<InputProps> = () => {
   return (
     <StyledSearchInput>
       <div className="row">

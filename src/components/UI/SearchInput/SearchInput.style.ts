@@ -6,6 +6,7 @@ export const StyledSearchInput = styled.div`
   justify-content: space-between;
   background: ${newColors.bgc};
   border-radius: 5px;
+  min-width: 50px;
   .row {
     padding-left: 15px;
     border: 1px solid ${newColors.borderColor};

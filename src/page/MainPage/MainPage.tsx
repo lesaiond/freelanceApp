@@ -1,5 +1,24 @@
 import { Header } from "../../components/Header/header";
+import TripleSlider from "../../components/Slider/TripleSlider";
+// import Swiper from "../../components/Swiper/Swiper";
 import { MainPageStyled } from "./MainPage.style";
+
+const services = [
+  { title: 'Web Development', image: '/public/img/mainPage/Rectangle 1448.png' },
+  { title: 'Mobile App Development', image: '/public/img/mainPage/Rectangle 1449.png' },
+  { title: 'Graphic Designing', image: '/public/img/mainPage/Rectangle 1450.png' },
+  { title: 'Web Development', image: '/public/img/mainPage/Rectangle 1448.png' },
+  { title: 'Mobile App Development', image: '/public/img/mainPage/Rectangle 1449.png' },
+];
+
+const likedServices = [
+  { title: 'Web Development', image: "/public/img/mainPage/Rectangle 1451.png" },
+  { title: 'Mobile App Development', image: '/public/img/mainPage/Rectangle 1452.png' },
+  { title: 'Graphic Designing', image: '/public/img/mainPage/Rectangle 1453.png' },
+  { title: 'Web Development', image: "/public/img/mainPage/Rectangle 1451.png" },
+  { title: 'Mobile App Development', image: '/public/img/mainPage/Rectangle 1452.png' },
+  { title: 'Graphic Designing', image: '/public/img/mainPage/Rectangle 1453.png' },
+];
 
 export const MainPage: React.FC = () => {
   return (
@@ -16,28 +35,10 @@ export const MainPage: React.FC = () => {
           />
         </section>
         <h3>Explore more services</h3>
-        <section className="services">
-          <div className="service">
-            <div className="title">Web Development</div>
-            <img src="/public/img/mainPage/Rectangle 1448.png" alt="coding" />
-          </div>
-          <div className="service">
-            <div className="title">Mobile App Development</div>
-            <img
-              src="/public/img/mainPage/Rectangle 1449.png"
-              alt="Mobile App Development"
-            />
-          </div>
-          <div className="service">
-            <div className="title">Graphic Designing</div>
-            <img
-              src="/public/img/mainPage/Rectangle 1450.png"
-              alt="Graphic Designing"
-            />
-          </div>
-        </section>
+        <TripleSlider services={services} />
         <h3>Services you might also like</h3>
-        <section className="likeSevices services">
+        <TripleSlider services={likedServices} />
+        {/* <section className="likeSevices services">
           <div className="service">
             <div className="title">Web Development</div>
             <img
@@ -59,7 +60,7 @@ export const MainPage: React.FC = () => {
               alt="Graphic Designing"
             />
           </div>
-        </section>
+        </section> */}
         <section className="globe">
           <img
             src="/public/img/mainPage/mobile-phone-as-platform-planet-lines-satellites-orbits-around-globe-spaceships-cellular-communication-174431570-removebg-preview 1.png"
@@ -74,7 +75,8 @@ export const MainPage: React.FC = () => {
             </p>
           </div>
         </section>
-        <section className="likeSevices services">
+        {/* <Swiper /> */}
+        <section className="services">
           <div className="service">
             <img
               src="/public/img/mainPage/Rectangle 1455(1).png"
@@ -101,3 +103,19 @@ export const MainPage: React.FC = () => {
     </MainPageStyled>
   );
 };
+
+
+// const services = [
+//   {
+//     image: "/public/img/mainPage/Rectangle 1455(1).png",
+//     title: "Do you need an UI design for your Mobile App?",
+//   },
+//   {
+//     image: "/public/img/mainPage/Rectangle 1456(1).png",
+//     title: "Need a professional Business Card?",
+//   },
+//   {
+//     image: "/public/img/mainPage/Rectangle 1455(1).png",
+//     title: "Do you need an UI design for your Mobile App?",
+//   },
+// ];

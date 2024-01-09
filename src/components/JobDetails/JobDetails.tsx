@@ -5,6 +5,7 @@ import { fetchJobDetails } from "../../store/slices/jobsIdSlice";
 import { Action, ThunkDispatch } from "@reduxjs/toolkit";
 import { JobContents } from "../JobsContainer/jobsContainer.style";
 import { JobDetailsStyled } from "./JobDetails.style";
+import { Header } from "../Header/header";
 
 export interface fastMapProps {
   name: string;
@@ -20,7 +21,6 @@ const JobDetails: React.FC<{ jobId?: number }> = ({ jobId }) => {
   );
 
   useEffect(() => {
-    console.log("in JobDetails dispatching:", jobId);
 
     if (jobId !== undefined) {
       dispatch(fetchJobDetails(jobId));
@@ -30,10 +30,11 @@ const JobDetails: React.FC<{ jobId?: number }> = ({ jobId }) => {
   if (!jobDetails) {
     return <h1>Loading...</h1>;
   }
-  console.log("jobDetails:", !jobDetails.tags);
-
+  console.log(jobDetails);
+  
   return (
     <JobDetailsStyled>
+      <Header/>
       <div className="leftBar bar">
         <div className="gray">company:</div>
         <div className="text">{jobDetails.company.name}</div>
