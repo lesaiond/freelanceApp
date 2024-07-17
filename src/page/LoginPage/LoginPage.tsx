@@ -1,10 +1,10 @@
-import React, { } from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { Input } from "../../components/UI/Input/Input";
-import { LoginStyledContainer } from "./LoginPage.style";
+import { ErrorMessage, LoginStyledContainer } from "./LoginPage.style";
 import { Button } from "../../components/UI/Button/Button";
 import StyledLink from "../../components/StyledLink/StyledLink";
 import { useNavigate } from "react-router-dom";
@@ -29,6 +29,12 @@ export const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const theme = localStorage.getItem("theme");
 
+  const [errorLogin, setErrorLogin] = useState(false)
+
+  const storedUserData = JSON.parse(
+    localStorage.getItem("registrationData") || "{}"
+  );
+
   const {
     control,
     handleSubmit,
@@ -39,13 +45,22 @@ export const LoginPage: React.FC = () => {
 
   const onSubmit = (data: LoginFormInputs) => {
     dispatch(setUser(data));
-    if(data.username === "admin" && data.userpassword === "00000000") {
-      navigate("/admin")
-    }else {
+    if (data.username === "admin" && data.userpassword === "00000000") {
+      navigate("/admin");
+    } else if (
+      data.username === storedUserData.username &&
+      data.userpassword === storedUserData.userpassword
+    ) {
       navigate("/");
-
+      localStorage.setItem("login", "success")
+    } else {
+      console.log("Loser !!!");
+      setErrorLogin(true)
     }
-    console.log("admin?", data.username === "admin" && data.userpassword == "00000000");
+    console.log(
+      "admin?",
+      data.username === "admin" && data.userpassword == "00000000"
+    );
   };
 
   return (
@@ -58,8 +73,11 @@ export const LoginPage: React.FC = () => {
         />
         <div className={`loginContainer ${theme}`}>
           <h1>Sign In</h1>
-          <span className="subText">Type your username and password to sign in</span>
+          <span className="subText">
+            Type your username and password to sign in
+          </span>
           <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+          { errorLogin && <ErrorMessage>User not found</ErrorMessage>}
             <Controller
               name="username"
               control={control}

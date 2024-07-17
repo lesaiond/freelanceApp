@@ -7,6 +7,7 @@ export const StyledNotification = styled.div`
   color: ${textColor};
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+  z-index: 9999;
   &.visible {
     .prime{ 
       color: ${primeColor};

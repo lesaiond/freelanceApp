@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyledProfileComponent } from "./ProfileComponent.style";
+import { useNavigate } from "react-router-dom";
 
 const ProfileComponent = () => {
+  const navigate = useNavigate();
+
+  const userInfo = JSON.parse(localStorage.getItem("registrationData"));
+
+  useEffect(() => {}, []);
+
+  const handleClickLogOut = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   return (
     <StyledProfileComponent>
       <div className="mainInfo">
+        <div onClick={handleClickLogOut} className="link remove">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 -960 960 960"
+            width="24"
+          >
+            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+          </svg>
+        </div>
         <img
           src="/public/img/avatar/Ellipse 92.png"
           alt=""
           className="avatar"
         />
-        <span className="username">ex_saboor69</span>
+        <span className="username">{userInfo.username}</span>
         <div className="space-between">
           <div>
             <svg
@@ -111,20 +132,31 @@ const ProfileComponent = () => {
         </div>
       </div>
       <div className="userInfo">
+        <svg onClick={() => navigate("/profile/edit")}
+          className="edit"
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 -960 960 960"
+          width="24"
+        >
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z" />
+        </svg>
         <div className="grayText">From</div>
-        <span className="text">John</span>
+        <span className="text">{userInfo.firstName}</span>
         <div className="grayText">Last Name</div>
-        <span className="text">Smith</span>
+        <span className="text">{userInfo.lastName}</span>
         <div className="grayText">Email</div>
-        <span className="text">johnsm@gmail.com</span>
+        <span className="text">{userInfo.lastName}</span>
         <div className="grayText">Gender</div>
-        <span className="text">Male</span>
-        <div className="grayText">Contact Number</div>
-        <span className="text">45967583759034</span>
+        <span className="text">{userInfo.lastName}</span>
+        <div className="grayText">subCategory</div>
+        <span className="text">{userInfo.subCategory}</span>
+        <div className="grayText">contactNumber</div>
+        <span className="text">{userInfo.contactNumber}</span>
         <div className="grayText">Education</div>
-        <span className="text">BSc. CS</span>
+        <span className="text">{userInfo.education}</span>
         <div className="grayText">Field</div>
-        <span className="text">Computer Sciences</span>
+        <span className="text">{userInfo.field}</span>
       </div>
     </StyledProfileComponent>
   );

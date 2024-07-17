@@ -8,6 +8,7 @@ import { fetchCompanies } from "../../store/slices/companieSlice";
 import { RowButton } from "../UI/RowButton/RowButton";
 import { StyledGrayBox } from "../UI/GrayBox/GrayBox.styled";
 import { StyledCompamiesContainer } from "./CompaniesContainer.style";
+import Loader from "../UI/Loader/Loader";
 
 interface Company {
   locations: Array<{ name: string }>;
@@ -40,7 +41,7 @@ const CompaniesContainer: React.FC = () => {
   }, [dispatch, page]);
 
   if (companyList.length === 0) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

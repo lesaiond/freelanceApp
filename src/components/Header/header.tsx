@@ -20,7 +20,6 @@ export const Header = ({className}: HeaderProps) => {
         <nav>
           <ul>
             <li onClick={() => navigate("/job")}>Jobs</li>
-            <li onClick={() => navigate("/favorites")}>Favority</li>
             <li><Notification /></li>        
             <li onClick={() => navigate("/messages")}>Messages</li>
           </ul>

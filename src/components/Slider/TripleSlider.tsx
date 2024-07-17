@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { StyledTripleSlider } from "./TripleSlider.style";
+import { useNavigate } from "react-router-dom";
 
 interface Service {
   title: string;
@@ -13,6 +14,7 @@ interface TripleSliderProps {
 
 const TripleSlider: React.FC<TripleSliderProps> = ({ services }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate()
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % (services.length - 2));
@@ -32,7 +34,7 @@ const TripleSlider: React.FC<TripleSliderProps> = ({ services }) => {
               key={index}
               className={`service`}
             >
-              <div className="title">{service.title}</div>
+              <div className="title" onClick={() => navigate("/job")}>{service.title}</div>
               <img src={service.image} alt={service.title} />
             </div>
           ))}

@@ -22,9 +22,7 @@ export const JobCard = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 10%;
-  margin: 0px 0% 66px 0;
-  margin-left: 30px;
-  margin-top: 20px;
+  width: 60vw;
 `;
 
 export const JobName = styled.span`

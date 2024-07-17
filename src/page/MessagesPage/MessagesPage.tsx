@@ -2,6 +2,8 @@ import { StyledMessagesPage } from "./MessagesPage.style";
 import { Header } from "../../components/Header/header";
 import UserMessageList from "../../components/UsersMessage/UsersMessage";
 import ChatInput from "../../components/UI/ChatInput/ChatInput";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const users = [
   {
@@ -27,6 +29,17 @@ const users = [
 ];
 
 const MessagesPage = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const loginData = localStorage.getItem("login")
+    console.log("loginData", loginData);
+    if(loginData === "success") {
+      console.log("loginData", "success");
+    } else {
+      navigate("/login")
+    }
+    
+  }, [])
   return (
     <StyledMessagesPage>
       <Header />

@@ -17,6 +17,7 @@ export const HeaderStyled = styled.header`
       font-size: 42px;
       font-style: normal;
       font-weight: 600;
+      cursor: pointer;
     }
   }
   .rightPart {

@@ -17,6 +17,7 @@ import { fetchJobDetails } from "../../store/slices/jobsIdSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import Star from "../UI/Star/Star";
+import Loader from "../UI/Loader/Loader";
 
 export interface ICompanyProps {
   id: number;
@@ -100,7 +101,7 @@ const JobListContainer: React.FC = () => {
   }, [favorites]);
 
   if (jobList.length === 0) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const formatDate = (dateString: string) => {
@@ -111,7 +112,7 @@ const JobListContainer: React.FC = () => {
 
   return (
     <div>
-      <JobsContainerStyled>
+      <JobsContainerStyled className="jobList">
         {jobList.map((job: IJobProps) => (
           <JobCard key={job.id}>
             <div>

@@ -15,7 +15,8 @@ import MessagesPage from "./page/MessagesPage/MessagesPage";
 import ProfilePage from "./page/ProfilePage/ProfilePage";
 import JobsPage from "./page/JobsPage/JobsPage";
 import JobDetails from "./components/JobDetails/JobDetails";
-import FavoritesPage from "./page/FavoritesPage/FavoritesPage";
+import RegistrationPage2 from "./page/RegistrationPage/RegistrationPage2";
+import EditUserInfo from "./page/editUserInfo/editUserInfo";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <RegistrationPage />,
+  },
+  {
+    path: "/signUp/2",
+    element: <RegistrationPage2 />,
   },
   {
     path: "/",
@@ -63,8 +68,8 @@ const router = createBrowserRouter([
     element: <ProfilePage />,
   },
   {
-    path: "/favorites",
-    element: <FavoritesPage />,
+    path: "/profile/edit",
+    element: <EditUserInfo />,
   },
 ]);
 

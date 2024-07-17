@@ -97,7 +97,7 @@ const BurgerMenu = () => {
         </svg>
         <span className="linkText">Settings</span>
       </div>
-      <div onClick={() => navigate("/admin/settings")} className="link remove">
+      <div onClick={() => navigate("/login")} className="link remove">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"

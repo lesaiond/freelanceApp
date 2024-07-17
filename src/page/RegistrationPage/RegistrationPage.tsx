@@ -42,8 +42,8 @@ const RegistrationPage: React.FC = () => {
   });
 
   const onSubmit = (data: FormInput) => {
-    console.log(data);
-    navigate("/login");
+    localStorage.setItem('registrationData', JSON.stringify(data));
+    navigate("/signUp/2");
   };
 
   return (
